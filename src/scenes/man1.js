@@ -9,6 +9,8 @@ class Man1 extends Phaser.Scene {
         this.load.image('background_1','assets/2.png');
         this.load.image('back_khai','assets/7.png');
         this.load.audio('khai_audio','assets/khai.m4a');
+        this.load.image('back_thao','assets/4.png');
+        this.load.audio('thaodp_audio','assets/thaodp.m4a');
     }
     create(){
         
@@ -20,27 +22,12 @@ class Man1 extends Phaser.Scene {
         this.background.setInteractive();
         this.po_x=0;
         this.po_y=0;
-        // this.background.on('pointerdown', () => {
-        //     this.po_x=this.game.input.mousePointer.x;
-        //     this.po_y=this.game.input.mousePointer.y;
-        //     if(this.po_x>=441&&this.po_x<=583&&this.po_y>=259&&this.po_y<=398){
-        //         this.background_1.setVisible(true);
-        //         this.back_text.setVisible(true);
-        //         this.back_khai.setVisible(true);
-        //         this.khai_audio.play();
-        //     }
-       
-        // })
-        // this.back_text.setInteractive();
-        // this.back_text.on('pointerdown',()=>{
-        //     this.back_text.setVisible(false);
-        //     this.background_1.setVisible(false);
-        //     this.back_khai.setVisible(false);
-        //     this.khai_audio.stop();
-        // })
         this.add_image(this.back_khai,this.khai_audio,441,583,259,398);
-        
-  
+        //create by thaodp
+        this.back_thao=this.add.image(207,211,'back_thao').setOrigin(0,0).setScale(34/75).setVisible(false);
+        this.thaodp_audio=this.sound.add('thaodp_audio',{loop:false});
+        this.add_image(this.back_thao,this.thaodp_audio,316,431,426,534);
+
     }
     update(){
         
