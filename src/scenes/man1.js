@@ -20,14 +20,41 @@ class Man1 extends Phaser.Scene {
         this.background.setInteractive();
         this.po_x=0;
         this.po_y=0;
+        // this.background.on('pointerdown', () => {
+        //     this.po_x=this.game.input.mousePointer.x;
+        //     this.po_y=this.game.input.mousePointer.y;
+        //     if(this.po_x>=441&&this.po_x<=583&&this.po_y>=259&&this.po_y<=398){
+        //         this.background_1.setVisible(true);
+        //         this.back_text.setVisible(true);
+        //         this.back_khai.setVisible(true);
+        //         this.khai_audio.play();
+        //     }
+       
+        // })
+        // this.back_text.setInteractive();
+        // this.back_text.on('pointerdown',()=>{
+        //     this.back_text.setVisible(false);
+        //     this.background_1.setVisible(false);
+        //     this.back_khai.setVisible(false);
+        //     this.khai_audio.stop();
+        // })
+        this.add_image(this.back_khai,this.khai_audio,441,583,259,398);
+        
+  
+    }
+    update(){
+        
+
+    }
+    add_image(image,audio,X_min,X_max,Y_min,Y_max){
         this.background.on('pointerdown', () => {
             this.po_x=this.game.input.mousePointer.x;
             this.po_y=this.game.input.mousePointer.y;
-            if(this.po_x>=441&&this.po_x<=583&&this.po_y>=259&&this.po_y<=398){
+            if(this.po_x>=X_min&&this.po_x<=X_max&&this.po_y>=Y_min&&this.po_y<=Y_max){
                 this.background_1.setVisible(true);
                 this.back_text.setVisible(true);
-                this.back_khai.setVisible(true);
-                this.khai_audio.play();
+                image.setVisible(true);
+                audio.play();
             }
        
         })
@@ -35,20 +62,8 @@ class Man1 extends Phaser.Scene {
         this.back_text.on('pointerdown',()=>{
             this.back_text.setVisible(false);
             this.background_1.setVisible(false);
-            this.back_khai.setVisible(false);
+            image.setVisible(false);
+            audio.stop();
         })
-        
-  
-    }
-    update(){
-        // if(this.game.input.mousePointer.isDown){
-        //     this.background_1==
-            
-            
-        // }
-
-        
-
-
     }
 }
