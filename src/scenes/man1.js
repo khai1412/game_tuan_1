@@ -1,12 +1,17 @@
 class Man1 extends Phaser.Scene {
 
-    constructor() {
-        super("Man1");
+  constructor() {
+    super("Man1");
+  }
 
+ 
+  update() {
+  
+  
+  }
 
-	}
     
-    preload() {
+   preload() {
         this.load.image('background', 'assets/1.png');
         this.load.image('background_1', 'assets/2.png');
         this.load.image('back_khai', 'assets/7.png');
@@ -16,6 +21,9 @@ class Man1 extends Phaser.Scene {
         this.load.image('back_kimanh', 'assets/3.png');
         this.load.image('back_thao','assets/4.png');
         this.load.audio('thaodp_audio','assets/thaodp.m4a');
+        this.load.image("back_vu", "assets/6.png");
+        this.load.audio("vu_audio", "assets/sound_vu.mp3");
+        this.load.audio('kimanh_audio', 'assets/kimanh.mp3');
     }
     create() {
         // background co ban
@@ -34,6 +42,9 @@ class Man1 extends Phaser.Scene {
       //create by thaodp
         this.back_thao=this.add.image(207,211,'back_thao').setOrigin(0,0).setScale(34/75).setVisible(false);
         this.thaodp_audio=this.sound.add('thaodp_audio',{loop:false});
+      //anh vu
+         this.back_vu = this.add.image(207, 211, "back_vu").setOrigin(0, 0).setScale(34 / 75).setVisible(false);
+         this.vu_audio = this.sound.add("vu_audio", { loop: false });
         this.background.setInteractive();
         this.po_x = 0;
         this.po_y = 0;
@@ -41,6 +52,7 @@ class Man1 extends Phaser.Scene {
         this.add_image(this.back_khai, this.khai_audio, 441, 583, 259, 398);
         this.add_image(this.back_kimanh, this.kimanh_audio, 541, 683, 395, 541);
         this.add_image(this.back_thao,this.thaodp_audio,316,431,426,534);
+        this.add_image(this.back_vu, this.vu_audio, 175, 313, 259, 398);
 
 
     }
