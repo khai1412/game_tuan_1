@@ -12,19 +12,20 @@ class Man1 extends Phaser.Scene {
         this.load.image('back_huyen', 'assets/5.png');
         this.load.audio('audio_huyen', 'assets/huyen.mp3');
         this.load.image('back_kimanh', 'assets/3.png');
+        this.load.audio('kimanh_audio', 'assets/kimanh.mp3');
     }
     create() {
         // background co ban
         this.background = this.add.image(0, 0, 'background').setOrigin(0, 0);
         this.background_1 = this.add.image(0, 0, 'background_1').setOrigin(0, 0).setVisible(false);
         this.back_text = this.add.text(40, 50, "BACK", { fontSize: 54, color: "#FFFFFF" }).setVisible(false);
-       // source cua khai
+        // source cua khai
         this.back_khai = this.add.image(207, 211, 'back_khai').setOrigin(0, 0).setScale(34 / 75).setVisible(false);
         this.khai_audio = this.sound.add('khai_audio', { loop: false });
-      // source cua kim anh
+        // source cua kim anh
         this.back_kimanh = this.add.image(207, 211, 'back_kimanh').setOrigin(0, 0).setScale(34 / 75).setVisible(false);
         this.kimanh_audio = this.sound.add('kimanh_audio', { loop: false });
-      // source cua huyen
+        // source cua huyen
         this.back_huyen = this.add.image(207, 211, 'back_huyen').setOrigin(0, 0).setScale(34 / 75).setVisible(false);
         this.audio_huyen = this.sound.add('audio_huyen', { loop: false });
         this.background.setInteractive();
@@ -42,7 +43,7 @@ class Man1 extends Phaser.Scene {
 
     }
 
-    
+
     add_image(image, audio, X_min, X_max, Y_min, Y_max) {
         this.background.on('pointerdown', () => {
             this.po_x = this.game.input.mousePointer.x;
