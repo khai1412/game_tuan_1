@@ -1,8 +1,8 @@
 class man2 extends Phaser.Scene {
-
   constructor() {
     super("man2");
   }
+
   
     preload(){
        this.load.image("treasure", "assets/treasure.png");
@@ -75,15 +75,28 @@ class man2 extends Phaser.Scene {
        //this.player.anims.play('right_1',true);
        
     }
-    collision_trea(player,trea){
-        //this.scene.start("man2");
+
+  update() {
+    var keyboard = this.input.keycomboard.createCursorKeys();
+    if (keyboard.left.isDown) {
+      this.player.setVelocityX(-100);
+      this.player.anims.play("left_1", true);
+    } else if (keyboard.right.isDown) {
+      this.player.setVelocityX(100);
+      this.player.anims.play("right_1", true);
+    } else {
+      this.player.setVelocityX(0);
+      this.player.anims.play("turn", true);
+    }
+    //this.player.anims.play('right_1',true);
+  }
+  collision_trea(player, trea) {
+       //this.scene.start("man2");
         this.blur_background.setVisible(true);
         this.frame_question.setVisible(true);
         player.setVisible(false);
         trea.destroy();
         this.treasure.setVisible(false);
         this.back_text.setVisible(true);
-    }
-
-}  
-
+  }
+}
