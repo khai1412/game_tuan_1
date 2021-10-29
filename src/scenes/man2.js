@@ -7,7 +7,7 @@ class man2 extends Phaser.Scene {
         
     }
     create(){
-
+     
     }
     update() {
     
