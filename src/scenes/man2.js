@@ -13,7 +13,7 @@ class man2 extends Phaser.Scene {
   create() {
     this.add.image(0, 0, 'main_background').setOrigin(0, 0).setScale(375 / 512, 375 / 256).setVisible(true);
     this.add.image(0, 0, 'blur_background').setOrigin(0, 0).setScale(2 / 3, 375 / 374).setVisible(true);
-
+    this.huyen_ques = this.add.text(200, 200, 'Thảo có phải tiên tửu CLB?', {fontSize:12, color: '#000000'});
   }
   update() {
 
