@@ -25,5 +25,25 @@ class man2 extends Phaser.Scene {
       .setOrigin(0, 0)
       .setScale(37 / 30, 250 / 183)
       .setVisible(true);
+    this.question_3 = this.add.text(
+      170,
+      350,
+      "JS Club là câu lạc bộ lẩu Nhật Bản?",
+      { fontSize: 20, color: "#000000" }
+    );
+    this.answer_yes_3 = this.add.text(300, 400, "Yes", {
+      fontSize: 20,
+      color: "#000000",
+    });
+    this.answer_no_3 = this.add.text(400, 400, "No", {
+      fontSize: 20,
+      color: "#000000",
+    });
+    this.message_question_3 = this.add
+      .text(310, 470, "Correct!!!", {
+        fontSize: 20,
+        color: "#00FF00",
+      })
+      .setVisible(false);
   }
 }
