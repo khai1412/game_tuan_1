@@ -1,16 +1,16 @@
 class man2 extends Phaser.Scene {
 
     constructor() {
-      super("man2");
+        super("man2");
     }
-    preload(){
-        
+    preload() {
+
     }
-    create(){
+    create() {
 
     }
     update() {
-    
-    
+
+
     }
-}  
+}
