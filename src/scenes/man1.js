@@ -29,8 +29,10 @@ class Man1 extends Phaser.Scene {
     create() {
         // background co ban
         this.background = this.add.image(0, 0, 'background').setOrigin(0, 0);
+        this.next_text =this.add.text(600,50,"NEXT",{fontSize:54,color:"#FFFFFF"});
         this.background_1 = this.add.image(0, 0, 'background_1').setOrigin(0, 0).setVisible(false);
         this.back_text = this.add.text(40, 50, "BACK", { fontSize: 54, color: "#FFFFFF" }).setVisible(false);
+        
        // source cua khai
         this.back_khai = this.add.image(207, 211, 'back_khai').setOrigin(0, 0).setScale(34 / 75).setVisible(false);
         this.khai_audio = this.sound.add('khai_audio', { loop: false });
@@ -129,6 +131,10 @@ class Man1 extends Phaser.Scene {
             image.setVisible(false);
             audio.stop();
         })
+        this.next_text.setInteractive();
+        this.next_text.on('pointerdown', () => {
+          this.scene.start("man2");
+      })
 
     }
     direct_wolf(){
