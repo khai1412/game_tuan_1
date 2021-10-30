@@ -45,11 +45,11 @@ class man2 extends Phaser.Scene {
         }
         this.lst_answer = ["true", "false", "true", "true"];
 
+
         this.answer_true = this.add.text(210, 400, "TRUE", { fontSize: 20, color: "#000" }).setVisible(false);
         this.answer_false = this.add.text(470, 400, "FAlSE", { fontSize: 20, color: "#000" }).setVisible(false);
         this.answer_true.setInteractive();
         this.answer_false.setInteractive();
-        ///------------
         this.player = this.physics.add.sprite(20, 598, 'player1');
         this.player.setCollideWorldBounds(true);
         this.anims.create({
@@ -88,8 +88,10 @@ class man2 extends Phaser.Scene {
         }
         //this.player.anims.play('right_1',true);
     }
-    collision_trea(player, trea) {
-        //this.scene.start("man2");
+ 
+ 
+  collision_trea(player, trea) {
+ 
         this.blur_background.setVisible(true);
         this.frame_question.setVisible(true);
         player.setVisible(false);
