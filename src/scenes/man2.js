@@ -24,7 +24,7 @@ class man2 extends Phaser.Scene {
         this.true_sound = this.sound.add("true_sound", { loop: false });
         this.false_sound = this.sound.add("false_sound", { loop: false });
         this.open_sound = this.sound.add("open_sound", { loop: false });
-        this.man2_background = this.sound.add("man2_background", { loop: false});
+        this.man2_background = this.sound.add("man2_background", { loop: false, volume:0.3});
         this.man2_background.play();
 
         this.main_background = this.add

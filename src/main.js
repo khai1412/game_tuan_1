@@ -1,4 +1,4 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 
     var game = new Phaser.Game({
         width: 750,
@@ -21,8 +21,8 @@ window.addEventListener('load', function() {
     game.scene.add("Preload", Preload);
     game.scene.add("Level", Level);
     game.scene.add("Boot", Boot);
-    game.scene.add("man1", Man1);
-    game.scene.add("man2", man2, true);
+    game.scene.add("man1", Man1, true);
+    game.scene.add("man2", man2);
 });
 
 class Boot extends Phaser.Scene {
