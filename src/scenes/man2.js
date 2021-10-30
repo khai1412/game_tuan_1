@@ -32,6 +32,10 @@ class man2 extends Phaser.Scene {
             this.lst_question.shift();
             this.answer_true.setVisible(false);
             this.answer_false.setVisible(false);
+            this.result_true.setVisible(false);
+            this.result_false.setVisible(false);
+            this.lst_answer.shift();
+
         })
         this.traes = [];
         this.traes_x = 150;
@@ -49,6 +53,8 @@ class man2 extends Phaser.Scene {
         this.answer_false = this.add.text(470, 400, "FAlSE", { fontSize: 20, color: "#000" }).setVisible(false);
         this.answer_true.setInteractive();
         this.answer_false.setInteractive();
+        this.result_true = this.add.text(210, 400, "oki", { fontSize: 20, color: "#000" }).setVisible(false);
+        this.result_false = this.add.text(470, 400, "sai", { fontSize: 20, color: "#000" }).setVisible(false);
         ///------------
         this.player = this.physics.add.sprite(20, 598, 'player1');
         this.player.setCollideWorldBounds(true);
@@ -87,6 +93,11 @@ class man2 extends Phaser.Scene {
             this.player.anims.play("turn", true);
         }
         //this.player.anims.play('right_1',true);
+        if (this.lst_answer[0] == 'true') {
+            this.true_true();
+        } else {
+            this.true_false();
+        }
     }
     collision_trea(player, trea) {
         //this.scene.start("man2");
@@ -100,12 +111,37 @@ class man2 extends Phaser.Scene {
         this.lst_question[0].setVisible(true);
         this.answer_true.setVisible(true);
         this.answer_false.setVisible(true);
-
     }
     true_true() {
+        this.answer_true.on('pointerdown', () => {
+            this.result_true.setVisible(true);
+            this.result_false.setVisible(false);
+            this.lst_question[0].setVisible(false);
+            this.answer_true.setVisible(false);
+            this.answer_false.setVisible(false);
+        })
         this.answer_false.on('pointerdown', () => {
-
-
+            this.result_false.setVisible(true);
+            this.result_true.setVisible(false);
+            this.lst_question[0].setVisible(false);
+            this.answer_true.setVisible(false);
+            this.answer_false.setVisible(false);
+        })
+    }
+    true_false() {
+        this.answer_true.on('pointerdown', () => {
+            this.result_false.setVisible(true);
+            this.result_true.setVisible(false);
+            this.lst_question[0].setVisible(false);
+            this.answer_true.setVisible(false);
+            this.answer_false.setVisible(false);
+        })
+        this.answer_false.on('pointerdown', () => {
+            this.result_true.setVisible(true);
+            this.result_false.setVisible(false);
+            this.lst_question[0].setVisible(false);
+            this.answer_true.setVisible(false);
+            this.answer_false.setVisible(false);
         })
     }
 }
