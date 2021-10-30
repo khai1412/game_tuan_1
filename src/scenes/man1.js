@@ -25,9 +25,12 @@ class Man1 extends Phaser.Scene {
         this.load.audio("vu_audio", "assets/sound_vu.mp3");
         this.load.audio('kimanh_audio', 'assets/kimanh.mp3');
         this.load.spritesheet('wolf','assets/wolf.png',{frameWidth:48,frameHeight:48});
+        this.load.audio('man1_background','assets/man1_background.mp3');
     }
     create() {
         // background co ban
+        this.man1_background = this.sound.add('man1_background',{volume: 0.2, loop: false});
+        this.man1_background.play();
         this.background = this.add.image(0, 0, 'background').setOrigin(0, 0);
         this.next_text =this.add.text(600,50,"NEXT",{fontSize:54,color:"#FFFFFF"});
         this.background_1 = this.add.image(0, 0, 'background_1').setOrigin(0, 0).setVisible(false);
@@ -116,6 +119,7 @@ class Man1 extends Phaser.Scene {
         this.background.on('pointerdown', () => {
             this.po_x = this.game.input.mousePointer.x;
             this.po_y = this.game.input.mousePointer.y;
+            
             if (this.po_x >= X_min && this.po_x <= X_max && this.po_y >= Y_min && this.po_y <= Y_max) {
                 this.background_1.setVisible(true);
                 this.back_text.setVisible(true);
@@ -130,10 +134,12 @@ class Man1 extends Phaser.Scene {
             this.background_1.setVisible(false);
             image.setVisible(false);
             audio.stop();
+           
         })
         this.next_text.setInteractive();
         this.next_text.on('pointerdown', () => {
           this.scene.start("man2");
+          this.man1_background.stop();
       })
 
     }
