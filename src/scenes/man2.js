@@ -76,20 +76,7 @@ class man2 extends Phaser.Scene {
        
     }
 
-  update() {
-    var keyboard = this.input.keycomboard.createCursorKeys();
-    if (keyboard.left.isDown) {
-      this.player.setVelocityX(-100);
-      this.player.anims.play("left_1", true);
-    } else if (keyboard.right.isDown) {
-      this.player.setVelocityX(100);
-      this.player.anims.play("right_1", true);
-    } else {
-      this.player.setVelocityX(0);
-      this.player.anims.play("turn", true);
-    }
-    //this.player.anims.play('right_1',true);
-  }
+ 
   collision_trea(player, trea) {
        //this.scene.start("man2");
         this.blur_background.setVisible(true);
