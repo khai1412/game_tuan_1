@@ -49,6 +49,7 @@ class man2 extends Phaser.Scene {
         }
         this.lst_answer = ["true", "false", "true", "true"];
 
+
         this.answer_true = this.add.text(210, 400, "TRUE", { fontSize: 20, color: "#000" }).setVisible(false);
         this.answer_false = this.add.text(470, 400, "FAlSE", { fontSize: 20, color: "#000" }).setVisible(false);
         this.answer_true.setInteractive();
@@ -99,8 +100,10 @@ class man2 extends Phaser.Scene {
             this.true_false();
         }
     }
+
+
     collision_trea(player, trea) {
-        //this.scene.start("man2");
+
         this.blur_background.setVisible(true);
         this.frame_question.setVisible(true);
         player.setVisible(false);
