@@ -12,6 +12,9 @@ class man2 extends Phaser.Scene {
         this.load.image('blur_background', 'assets/background_blur.jpg');
         this.load.image('frame_question', 'assets/game_frame.png');
         this.load.spritesheet('player1', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+        this.load.image("true_image", "assets/true.png");
+        this.load.image("false_image", "assets/false.png");
+
     }
     create() {
         this.main_background = this.add.image(0, 0, 'main_background').setOrigin(0, 0).setScale(375 / 512, 375 / 256).setVisible(true);
@@ -28,10 +31,8 @@ class man2 extends Phaser.Scene {
             this.player.setVisible(true);
             this.treasure.setVisible(true);
 
-            this.lst_question[0].setVisible(false);
+            this.show_hide_content(false);
             this.lst_question.shift();
-            this.answer_true.setVisible(false);
-            this.answer_false.setVisible(false);
             this.result_true.setVisible(false);
             this.result_false.setVisible(false);
             this.lst_answer.shift();
@@ -43,18 +44,25 @@ class man2 extends Phaser.Scene {
             this.traes[i] = this.treasure.create(this.traes_x, 610, 'treasure').setScale(0.15);
             this.traes_x += 180;
         }
+        this.all_question = ["Coding Project có 4 nhà tài\n\ntrợ đúng không?"];
         this.lst_question = [];
         for (var i = 0; i < 4; i++) {
-            this.lst_question[i] = this.add.text(210, 250, "Coding Project có 4 nhà tài\n\ntrợ đúng không?" + i, { fontSize: 20, color: "#000" }).setVisible(false);
+            this.lst_question[i] = this.add.text(210, 250, this.all_question[0] + i, { fontSize: 20, color: "#000" }).setVisible(false);
         }
         this.lst_answer = ["true", "false", "true", "true"];
 
+<<<<<<< HEAD
         this.answer_true = this.add.text(210, 400, "TRUE", { fontSize: 20, color: "#000" }).setVisible(false);
         this.answer_false = this.add.text(470, 400, "FAlSE", { fontSize: 20, color: "#000" }).setVisible(false);
+=======
+
+        this.answer_true = this.add.text(210, 500, "TRUE", { fontSize: 20, color: "#000" }).setVisible(false);
+        this.answer_false = this.add.text(470, 500, "FAlSE", { fontSize: 20, color: "#000" }).setVisible(false);
+>>>>>>> 7a8a70b51bc2a3379c020a4a8d926f634d808e30
         this.answer_true.setInteractive();
         this.answer_false.setInteractive();
-        this.result_true = this.add.text(210, 400, "oki", { fontSize: 20, color: "#000" }).setVisible(false);
-        this.result_false = this.add.text(470, 400, "sai", { fontSize: 20, color: "#000" }).setVisible(false);
+        this.result_true = this.add.image(240, 260, 'true_image').setOrigin(0, 0).setScale(1.2).setVisible(false);
+        this.result_false = this.add.image(240, 260, 'false_image').setOrigin(0, 0).setScale(0.5).setVisible(false);
         ///------------
         this.player = this.physics.add.sprite(20, 598, 'player1');
         this.player.setCollideWorldBounds(true);
@@ -101,48 +109,48 @@ class man2 extends Phaser.Scene {
     }
 
     collision_trea(player, trea) {
-
         this.blur_background.setVisible(true);
         this.frame_question.setVisible(true);
         player.setVisible(false);
         trea.destroy();
         this.treasure.setVisible(false);
-        this.back_text.setVisible(true);
-
-        this.lst_question[0].setVisible(true);
-        this.answer_true.setVisible(true);
-        this.answer_false.setVisible(true);
+        this.show_hide_content(true);
     }
     true_true() {
         this.answer_true.on('pointerdown', () => {
-            this.result_true.setVisible(true);
-            this.result_false.setVisible(false);
-            this.lst_question[0].setVisible(false);
-            this.answer_true.setVisible(false);
-            this.answer_false.setVisible(false);
+            this.show_result_true();
         })
         this.answer_false.on('pointerdown', () => {
-            this.result_false.setVisible(true);
-            this.result_true.setVisible(false);
-            this.lst_question[0].setVisible(false);
-            this.answer_true.setVisible(false);
-            this.answer_false.setVisible(false);
+            this.show_result_false();
         })
     }
     true_false() {
         this.answer_true.on('pointerdown', () => {
-            this.result_false.setVisible(true);
-            this.result_true.setVisible(false);
-            this.lst_question[0].setVisible(false);
-            this.answer_true.setVisible(false);
-            this.answer_false.setVisible(false);
+            this.show_result_false();
         })
         this.answer_false.on('pointerdown', () => {
-            this.result_true.setVisible(true);
-            this.result_false.setVisible(false);
-            this.lst_question[0].setVisible(false);
-            this.answer_true.setVisible(false);
-            this.answer_false.setVisible(false);
+            this.show_result_true();
         })
     }
+<<<<<<< HEAD
 }
+=======
+    show_result_true() {
+        this.result_true.setVisible(true);
+        this.result_false.setVisible(false);
+        this.show_hide_content(false);
+        this.back_text.setVisible(true);
+    }
+    show_result_false() {
+        this.result_false.setVisible(true);
+        this.result_true.setVisible(false);
+        this.show_hide_content(false);
+        this.back_text.setVisible(true);
+    }
+    show_hide_content(param) {
+        this.lst_question[0].setVisible(param);
+        this.answer_true.setVisible(param);
+        this.answer_false.setVisible(param);
+    }
+}
+>>>>>>> 7a8a70b51bc2a3379c020a4a8d926f634d808e30
