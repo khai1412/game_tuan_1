@@ -17,6 +17,7 @@ class man2 extends Phaser.Scene {
        this.blur_background=this.add.image(0,0,'blur_background').setOrigin(0,0).setScale(2/3,375/374).setVisible(false);
        this.frame_question=this.add.image(5, 120, 'frame_question').setOrigin(0, 0).setScale(37/30,250/183).setVisible(false);
        this.back_text = this.add.text(40, 50, "BACK", { fontSize: 54, color: "#FFFFFF" }).setVisible(false);
+       this.huyen_ques = this.add.text(200, 300, 'Thảo có phải là  tiên tửu CLB?', { fontSize: 20, color: '#00000' }).setVisible(false);
        this.treasure=this.physics.add.group();
        this.back_text.setInteractive();
        this.back_text.on('pointerdown', () => {
@@ -77,12 +78,33 @@ class man2 extends Phaser.Scene {
     }
     collision_trea(player,trea){
         //this.scene.start("man2");
+        var ans=1;
         this.blur_background.setVisible(true);
         this.frame_question.setVisible(true);
         player.setVisible(false);
         trea.destroy();
         this.treasure.setVisible(false);
         this.back_text.setVisible(true);
+        this.huyen_ques.setVisible(true);
+        this.correct = this.add.text(300, 400, 'Đúng', { fontSize: 20, color: '#00000' });
+        this.fail = this.add.text(400, 400, 'Sai', { fontSize: 20, color: '#00000' });
+        this.correct.setInteractive();
+        
+        var ans1=1;
+        this.correct.on('pointerdown',()=>{
+            ans1=1;
+        })
+        this.fail.setInteractive();
+        this.fail.on('pointerdown',()=>{
+            ans1=0;
+        })
+        if(ans1==ans){
+            this.wrong_answer = this.add.text(200, 480, 'Đúm rùi=))', { fontSize: 20, color: '#FF0000' }).setVisible(true);
+        } else {
+            this.wrong_answer = this.add.text(200, 480, 'Poor you ~.~ Bạn nhầm to rồi =))', { fontSize: 20, color: '#FF0000' }).setVisible(true);
+
+        }
+        
     }
 
 }  
