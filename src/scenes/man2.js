@@ -14,11 +14,13 @@ class man2 extends Phaser.Scene {
         this.load.spritesheet('player1', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image("true_image", "assets/true.png");
         this.load.image("false_image", "assets/false.png");
-
+        this.load.audio('man2_background', 'assets/man2_background.mp3');
     }
     create() {
         this.main_background = this.add.image(0, 0, 'main_background').setOrigin(0, 0).setScale(375 / 512, 375 / 256).setVisible(true);
         this.blur_background = this.add.image(0, 0, 'blur_background').setOrigin(0, 0).setScale(2 / 3, 375 / 374).setVisible(false);
+        this.man2_background = this.sound.add('man2_background',{ loop: false});
+        this.man2_background.play();
         this.frame_question = this.add.image(5, 120, 'frame_question').setOrigin(0, 0).setScale(37 / 30, 250 / 183).setVisible(false);
         this.back_text = this.add.text(40, 50, "BACK", { fontSize: 54, color: "#FFFFFF" }).setVisible(false);
         this.treasure = this.physics.add.group();
@@ -36,7 +38,6 @@ class man2 extends Phaser.Scene {
             this.result_true.setVisible(false);
             this.result_false.setVisible(false);
             this.lst_answer.shift();
-
         })
         this.traes = [];
         this.traes_x = 150;
@@ -47,18 +48,13 @@ class man2 extends Phaser.Scene {
         this.all_question = ["Coding Project có 4 nhà tài\n\ntrợ đúng không?"];
         this.lst_question = [];
         for (var i = 0; i < 4; i++) {
-            this.lst_question[i] = this.add.text(210, 250, this.all_question[0] + i, { fontSize: 20, color: "#000" }).setVisible(false);
+            this.lst_question[i] = this.add.text(210, 250, this.all_question[i], { fontSize: 20, color: "#000" }).setVisible(false);
         }
         this.lst_answer = ["true", "false", "true", "true"];
 
-<<<<<<< HEAD
-        this.answer_true = this.add.text(210, 400, "TRUE", { fontSize: 20, color: "#000" }).setVisible(false);
-        this.answer_false = this.add.text(470, 400, "FAlSE", { fontSize: 20, color: "#000" }).setVisible(false);
-=======
 
         this.answer_true = this.add.text(210, 500, "TRUE", { fontSize: 20, color: "#000" }).setVisible(false);
         this.answer_false = this.add.text(470, 500, "FAlSE", { fontSize: 20, color: "#000" }).setVisible(false);
->>>>>>> 7a8a70b51bc2a3379c020a4a8d926f634d808e30
         this.answer_true.setInteractive();
         this.answer_false.setInteractive();
         this.result_true = this.add.image(240, 260, 'true_image').setOrigin(0, 0).setScale(1.2).setVisible(false);
@@ -132,9 +128,6 @@ class man2 extends Phaser.Scene {
             this.show_result_true();
         })
     }
-<<<<<<< HEAD
-}
-=======
     show_result_true() {
         this.result_true.setVisible(true);
         this.result_false.setVisible(false);
@@ -153,4 +146,3 @@ class man2 extends Phaser.Scene {
         this.answer_false.setVisible(param);
     }
 }
->>>>>>> 7a8a70b51bc2a3379c020a4a8d926f634d808e30
