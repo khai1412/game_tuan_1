@@ -14,6 +14,7 @@ class man2 extends Phaser.Scene {
         this.load.spritesheet('player1', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
         this.load.image("true_image", "assets/true.png");
         this.load.image("false_image", "assets/false.png");
+        this.load.audio("open_trea", "assets/open_trea.mp3");
 
     }
     create() {
@@ -82,6 +83,9 @@ class man2 extends Phaser.Scene {
         for (var i = 0; i < 4; i++) {
             this.physics.add.overlap(this.player, this.traes[i], this.collision_trea, null, this);
         }
+        this.nhacnen = this.sound.add('open_trea', 'assets/open_trea.mp3');
+        this.nhacnen.loop = false;
+
     }
     update() {
         var keyboard = this.input.keyboard.createCursorKeys();
@@ -111,6 +115,7 @@ class man2 extends Phaser.Scene {
         trea.destroy();
         this.treasure.setVisible(false);
         this.show_hide_content(true);
+        this.nhacnen.play();
     }
     true_true() {
         this.answer_true.on('pointerdown', () => {
