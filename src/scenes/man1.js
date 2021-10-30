@@ -25,6 +25,10 @@ class Man1 extends Phaser.Scene {
         this.load.audio("vu_audio", "assets/sound_vu.mp3");
         this.load.audio('kimanh_audio', 'assets/kimanh.mp3');
         this.load.spritesheet('wolf','assets/wolf.png',{frameWidth:48,frameHeight:48});
+        this.load.audio("background_music","assets/backGround_music.mp3");
+    }
+    playBackgroundMusic(audio){
+      audio.play();
     }
     create() {
         // background co ban
@@ -51,6 +55,8 @@ class Man1 extends Phaser.Scene {
         this.background.setInteractive();
         this.po_x = 0;
         this.po_y = 0;
+        this.background_music = this.sound.add("background_music", { loop: false });
+        this.playBackgroundMusic(this.background_music);
         this.add_image(this.back_huyen, this.audio_huyen, 42, 220, 406, 581);
         this.add_image(this.back_khai, this.khai_audio, 441, 583, 259, 398);
         this.add_image(this.back_kimanh, this.kimanh_audio, 541, 683, 395, 541);
