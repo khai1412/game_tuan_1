@@ -1,30 +1,50 @@
 class man2 extends Phaser.Scene {
-
     constructor() {
         super("man2");
     }
 
-
     preload() {
         this.load.image("treasure", "assets/treasure.png");
         //this.load.image("game_frame_vu", "assets/game_frame.png");
-        this.load.image('main_background', 'assets/background_scene_2.png');
-        this.load.image('blur_background', 'assets/background_blur.jpg');
-        this.load.image('frame_question', 'assets/game_frame.png');
-        this.load.spritesheet('player1', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+        this.load.image("main_background", "assets/background_scene_2.png");
+        this.load.image("blur_background", "assets/background_blur.jpg");
+        this.load.image("frame_question", "assets/game_frame.png");
+        this.load.spritesheet("player1", "assets/dude.png", {
+            frameWidth: 32,
+            frameHeight: 48,
+        });
         this.load.image("true_image", "assets/true.png");
         this.load.image("false_image", "assets/false.png");
-        this.load.audio("open_trea", "assets/open_trea.mp3");
-
+        this.load.audio("true_sound", "assets/true_sound.mp3");
+        this.load.audio("false_sound", "assets/false_sound.mp3");
+        this.load.audio("open_sound", "assets/open_trea.mp3");
     }
     create() {
-        this.main_background = this.add.image(0, 0, 'main_background').setOrigin(0, 0).setScale(375 / 512, 375 / 256).setVisible(true);
-        this.blur_background = this.add.image(0, 0, 'blur_background').setOrigin(0, 0).setScale(2 / 3, 375 / 374).setVisible(false);
-        this.frame_question = this.add.image(5, 120, 'frame_question').setOrigin(0, 0).setScale(37 / 30, 250 / 183).setVisible(false);
-        this.back_text = this.add.text(40, 50, "BACK", { fontSize: 54, color: "#FFFFFF" }).setVisible(false);
+        this.true_sound = this.sound.add("true_sound", { loop: false });
+        this.false_sound = this.sound.add("false_sound", { loop: false });
+        this.open_sound = this.sound.add("open_sound", { loop: false });
+
+        this.main_background = this.add
+            .image(0, 0, "main_background")
+            .setOrigin(0, 0)
+            .setScale(375 / 512, 375 / 256)
+            .setVisible(true);
+        this.blur_background = this.add
+            .image(0, 0, "blur_background")
+            .setOrigin(0, 0)
+            .setScale(2 / 3, 375 / 374)
+            .setVisible(false);
+        this.frame_question = this.add
+            .image(5, 120, "frame_question")
+            .setOrigin(0, 0)
+            .setScale(37 / 30, 250 / 183)
+            .setVisible(false);
+        this.back_text = this.add
+            .text(40, 50, "BACK", { fontSize: 54, color: "#FFFFFF" })
+            .setVisible(false);
         this.treasure = this.physics.add.group();
         this.back_text.setInteractive();
-        this.back_text.on('pointerdown', () => {
+        this.back_text.on("pointerdown", () => {
             this.back_text.setVisible(false);
             this.main_background.setVisible(true);
             this.blur_background.setVisible(false);
@@ -37,54 +57,76 @@ class man2 extends Phaser.Scene {
             this.result_true.setVisible(false);
             this.result_false.setVisible(false);
             this.lst_answer.shift();
-
-        })
+        });
         this.traes = [];
         this.traes_x = 150;
         for (var i = 0; i < 4; i++) {
-            this.traes[i] = this.treasure.create(this.traes_x, 610, 'treasure').setScale(0.15);
+            this.traes[i] = this.treasure
+                .create(this.traes_x, 610, "treasure")
+                .setScale(0.15);
             this.traes_x += 180;
         }
-        this.all_question = ["Coding Project có 4 nhà tài\n\ntrợ đúng không?"];
+        this.all_question = [
+            "Coding Project có 4 nhà tài\n\ntrợ đúng không?",
+            "Coding Project có 7 team tham\ngia đúng khum?",
+            "Đối tượng tham gia Coding\nProject chỉ là thành viên\nnội bộ clb JS đúng ko?",
+            "Coding Project lập trình trên\nnền tảng Phaser đúng không?",
+        ];
         this.lst_question = [];
         for (var i = 0; i < 4; i++) {
-            this.lst_question[i] = this.add.text(210, 250, this.all_question[0] + i, { fontSize: 20, color: "#000" }).setVisible(false);
+            this.lst_question[i] = this.add
+                .text(210, 250, this.all_question[i], { fontSize: 20, color: "#000" })
+                .setVisible(false);
         }
         this.lst_answer = ["true", "false", "true", "true"];
 
-
-        this.answer_true = this.add.text(210, 500, "TRUE", { fontSize: 20, color: "#000" }).setVisible(false);
-        this.answer_false = this.add.text(470, 500, "FAlSE", { fontSize: 20, color: "#000" }).setVisible(false);
+        this.answer_true = this.add
+            .text(210, 500, "TRUE", { fontSize: 20, color: "#000" })
+            .setVisible(false);
+        this.answer_false = this.add
+            .text(470, 500, "FAlSE", { fontSize: 20, color: "#000" })
+            .setVisible(false);
         this.answer_true.setInteractive();
         this.answer_false.setInteractive();
-        this.result_true = this.add.image(240, 260, 'true_image').setOrigin(0, 0).setScale(1.2).setVisible(false);
-        this.result_false = this.add.image(240, 260, 'false_image').setOrigin(0, 0).setScale(0.5).setVisible(false);
+        this.result_true = this.add
+            .image(240, 260, "true_image")
+            .setOrigin(0, 0)
+            .setScale(1.2)
+            .setVisible(false);
+        this.result_false = this.add
+            .image(240, 260, "false_image")
+            .setOrigin(0, 0)
+            .setScale(0.5)
+            .setVisible(false);
         ///------------
-        this.player = this.physics.add.sprite(20, 598, 'player1');
+        this.player = this.physics.add.sprite(20, 598, "player1");
         this.player.setCollideWorldBounds(true);
         this.anims.create({
-            key: 'left_1',
-            frames: this.anims.generateFrameNumbers('player1', { start: 0, end: 3 }),
+            key: "left_1",
+            frames: this.anims.generateFrameNumbers("player1", { start: 0, end: 3 }),
             frameRate: 10,
-            repeat: -1
-        })
+            repeat: -1,
+        });
         this.anims.create({
-            key: 'turn',
-            frames: [{ key: 'player1', frame: 4 }],
-            frameRate: 10
-
-        })
+            key: "turn",
+            frames: [{ key: "player1", frame: 4 }],
+            frameRate: 10,
+        });
         this.anims.create({
-            key: 'right_1',
-            frames: this.anims.generateFrameNumbers('player1', { start: 5, end: 8 }),
+            key: "right_1",
+            frames: this.anims.generateFrameNumbers("player1", { start: 5, end: 8 }),
             frameRate: 5,
-            repeat: -1
-        })
+            repeat: -1,
+        });
         for (var i = 0; i < 4; i++) {
-            this.physics.add.overlap(this.player, this.traes[i], this.collision_trea, null, this);
+            this.physics.add.overlap(
+                this.player,
+                this.traes[i],
+                this.collision_trea,
+                null,
+                this
+            );
         }
-        this.open_sound = this.sound.add('open_trea', 'assets/open_trea.mp3');
-        this.open_sound.loop = false;
     }
     update() {
         var keyboard = this.input.keyboard.createCursorKeys();
@@ -99,13 +141,12 @@ class man2 extends Phaser.Scene {
             this.player.anims.play("turn", true);
         }
         //this.player.anims.play('right_1',true);
-        if (this.lst_answer[0] == 'true') {
+        if (this.lst_answer[0] == "true") {
             this.true_true();
         } else {
             this.true_false();
         }
     }
-
 
     collision_trea(player, trea) {
         this.blur_background.setVisible(true);
@@ -117,32 +158,36 @@ class man2 extends Phaser.Scene {
         this.open_sound.play();
     }
     true_true() {
-        this.answer_true.on('pointerdown', () => {
+        this.answer_true.on("pointerdown", () => {
             this.show_result_true();
-        })
-        this.answer_false.on('pointerdown', () => {
+        });
+        this.answer_false.on("pointerdown", () => {
             this.show_result_false();
-        })
+        });
     }
     true_false() {
-        this.answer_true.on('pointerdown', () => {
+        this.answer_true.on("pointerdown", () => {
             this.show_result_false();
-        })
-        this.answer_false.on('pointerdown', () => {
+        });
+        this.answer_false.on("pointerdown", () => {
             this.show_result_true();
-        })
+        });
     }
     show_result_true() {
         this.result_true.setVisible(true);
         this.result_false.setVisible(false);
         this.show_hide_content(false);
         this.back_text.setVisible(true);
+        this.false_sound.stop();
+        this.true_sound.play();
     }
     show_result_false() {
         this.result_false.setVisible(true);
         this.result_true.setVisible(false);
         this.show_hide_content(false);
         this.back_text.setVisible(true);
+        this.true_sound.stop();
+        this.false_sound.play();
     }
     show_hide_content(param) {
         this.lst_question[0].setVisible(param);
