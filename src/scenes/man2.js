@@ -44,9 +44,10 @@ class man2 extends Phaser.Scene {
             this.traes[i] = this.treasure.create(this.traes_x, 610, 'treasure').setScale(0.15);
             this.traes_x += 180;
         }
+        this.all_question = ["Coding Project có 4 nhà tài\n\ntrợ đúng không?"];
         this.lst_question = [];
         for (var i = 0; i < 4; i++) {
-            this.lst_question[i] = this.add.text(210, 250, "Coding Project có 4 nhà tài\n\ntrợ đúng không?" + i, { fontSize: 20, color: "#000" }).setVisible(false);
+            this.lst_question[i] = this.add.text(210, 250, this.all_question[0] + i, { fontSize: 20, color: "#000" }).setVisible(false);
         }
         this.lst_answer = ["true", "false", "true", "true"];
 
@@ -104,13 +105,11 @@ class man2 extends Phaser.Scene {
 
 
     collision_trea(player, trea) {
-
         this.blur_background.setVisible(true);
         this.frame_question.setVisible(true);
         player.setVisible(false);
         trea.destroy();
         this.treasure.setVisible(false);
-        this.back_text.setVisible(true);
         this.show_hide_content(true);
     }
     true_true() {
@@ -133,11 +132,13 @@ class man2 extends Phaser.Scene {
         this.result_true.setVisible(true);
         this.result_false.setVisible(false);
         this.show_hide_content(false);
+        this.back_text.setVisible(true);
     }
     show_result_false() {
         this.result_false.setVisible(true);
         this.result_true.setVisible(false);
         this.show_hide_content(false);
+        this.back_text.setVisible(true);
     }
     show_hide_content(param) {
         this.lst_question[0].setVisible(param);
