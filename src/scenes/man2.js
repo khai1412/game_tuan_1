@@ -200,10 +200,10 @@ class man2 extends Phaser.Scene {
     this.back_text.setVisible(true);
     this.true_sound.stop();
     this.false_sound.play();
-    
-  //   this.sleep(2000).then(() => {
-  //     this.scene.start('man2');
-  // });
+    this.man2_background.stop();
+    this.sleep(2000).then(() => {
+      this.scene.start('man2');
+  });
     
   }
   show_hide_content(param) {
