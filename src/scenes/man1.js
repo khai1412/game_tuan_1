@@ -3,7 +3,7 @@ class Man1 extends Phaser.Scene {
     super("Man1");
   }
 
-  update() {}
+  update() { }
 
   preload() {
     this.load.image("background", "assets/1.png");
