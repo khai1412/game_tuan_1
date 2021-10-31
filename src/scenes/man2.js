@@ -88,7 +88,7 @@ class man2 extends Phaser.Scene {
         .text(210, 250, this.all_question[i], { fontSize: 20, color: "#000" })
         .setVisible(false);
     }
-    this.lst_answer = ["true", "true", "true", "true"];
+    this.lst_answer = ["true", "false", "true", "true"];
     this.answer_true = this.add.text(210, 500, "TRUE", { fontSize: 20, color: "#000" }).setVisible(false);
     this.answer_false = this.add.text(470, 500, "FAlSE", { fontSize: 20, color: "#000" }).setVisible(false);
     
@@ -122,10 +122,10 @@ class man2 extends Phaser.Scene {
     var keyboard = this.input.keyboard.createCursorKeys();
     if(this.number_ques==4){
         
-        this.man2_background.stop();
-        this.win_music.play();
-        var win_text = this.add.text(150,280,"!!CONGRACULATION!!",{fontSize:48,color:"#FFFFFF"});
-        var score_text = this.add.text(65,330,"you answered "+(this.count)+" questions correctly",{fontSize:32,color:"#FFFFFF"});
+        //this.man2_background.stop();
+        //this.win_music.play();
+        var win_text = this.add.text(150,320,"!!CONGRACULATION!!",{fontSize:48,color:"#FFFFFF"});
+        //var score_text = this.add.text(65,330,"you answered "+(this.count)+" questions correctly",{fontSize:32,color:"#FFFFFF"});
             
     }
     
@@ -200,10 +200,7 @@ class man2 extends Phaser.Scene {
     this.back_text.setVisible(true);
     this.true_sound.stop();
     this.false_sound.play();
-    this.man2_background.stop();
-    this.sleep(2000).then(() => {
-      this.scene.start('man2');
-  });
+  
     
   }
   show_hide_content(param) {
@@ -216,6 +213,6 @@ class man2 extends Phaser.Scene {
     return new Promise((resolve) => setTimeout(resolve, time));
   }
   
-  // Usage!
+ 
   
 }
