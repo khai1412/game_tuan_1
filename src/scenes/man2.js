@@ -22,6 +22,8 @@ class man2 extends Phaser.Scene {
         this.load.image("below_background", "assets/below_bg.png");
         this.load.image("treasure", "assets/treasure_final.png");
         this.load.image("platform", "assets/platform_final.png");
+        this.load.image("bomb", 'assets/bomb.png');
+        this.load.image("bomBum", 'assets/bomBum.png');
     }
     create() {
         this.true_sound = this.sound.add("true_sound", { loop: false });
@@ -29,7 +31,8 @@ class man2 extends Phaser.Scene {
         this.open_sound = this.sound.add("open_sound", { loop: false });
         this.man2_background = this.sound.add("man2_background", { loop: false, volume: 0.3 });
         // this.man2_background.play();
-
+        this.bombs = this.physics.add.group();
+        this.count_bomb = 3;
         this.main_background = this.add
             .image(0, 0, "main_background")
             .setOrigin(0, 0)
@@ -61,8 +64,9 @@ class man2 extends Phaser.Scene {
             this.blur_background.setVisible(false);
             this.frame_question.setVisible(false);
             this.player.setVisible(true);
+            this.bombs.setVelocityX(Phaser.Math.Between(100,300));
+            this.bombs.setVisible(true);
             this.treasure.setVisible(true);
-
             this.show_hide_content(false);
             this.lst_question.shift();
             this.result_true.setVisible(false);
@@ -158,8 +162,33 @@ class man2 extends Phaser.Scene {
                 this
             );
         }
+        this.addBomBum;
+        this.check_over = false;
+        this.physics.add.collider(this.player,this.bombs,this.gameOver,null,this);
+        this.physics.add.collider(this.bombs, this.platform);
+        for (var i = 0; i < 3; i++) {
+            var bom_x = Phaser.Math.Between(20, 770);
+            var bom_y = Phaser.Math.Between(10, 30);
+            var bom = this.bombs.create(bom_x, bom_y, 'bomb');
+            bom.setCollideWorldBounds(true);
+            bom.setBounce(1);
+            bom.setGravityY(Phaser.Math.Between(100,300));
+            bom.setVelocityX(Phaser.Math.Between(100,300));
+            bom.setScale(0.05,0.05);
+        }
+        this.physics.add.collider(this.platforms, this.bombs);
+    }
+    gameOver(bomb,player){
+        this.physics.pause();
+        this.addBomBum = this.add.image(103, 100, "bomBum").setOrigin(0, 0).setScale(1.2).setVisible(true);
+        // player.setTint(0xff0000);
+        player.anims.play('turn');
+        this.check_over=true;
     }
     update() {
+        if(this.check_over==true){
+            return;
+        }
         var keyboard = this.input.keyboard.createCursorKeys();
         if (keyboard.left.isDown) {
             // chạy anims
@@ -193,6 +222,9 @@ class man2 extends Phaser.Scene {
         this.show_hide_content(true);
         this.open_sound.play();
         this.platforms.setVisible(false);
+        this.bombs.setVelocityX(0);
+        this.bombs.setVelocityY(0);
+        this.bombs.setVisible(false);
     }
     true_true() {
         this.answer_true.on("pointerdown", () => {
