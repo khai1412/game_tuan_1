@@ -121,7 +121,7 @@ class man2 extends Phaser.Scene {
         // tạo biến platform
 
         // từ platform tại ra các thanh xanh xanh
-        this.platforms.create(100, 679, 'below_background').setScale(1.3);
+        this.platforms.create(100, 681, 'below_background').setScale(1.3).refreshBody();
         ///------------
         this.player = this.physics.add.sprite(20, 500, "player1").setScale(1.5);
         this.player.setCollideWorldBounds(true);
