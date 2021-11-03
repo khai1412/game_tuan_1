@@ -19,7 +19,7 @@ class man2 extends Phaser.Scene {
         this.load.audio("false_sound", "assets/false_sound.mp3");
         this.load.audio("open_sound", "assets/open_trea.mp3");
         this.load.audio("man2_background", "assets/man2_background.mp3")
-        this.load.image("below_background", "assets/background_scene2_ground.png");
+        this.load.image("below_background", "assets/below_bg.png");
     }
     create() {
         this.true_sound = this.sound.add("true_sound", { loop: false });
@@ -108,7 +108,7 @@ class man2 extends Phaser.Scene {
         // từ platform tại ra các thanh xanh xanh
         this.platforms.create(100, 679, 'below_background').setScale(1.3);
         ///------------
-        this.player = this.physics.add.sprite(20, 50, "player1");
+        this.player = this.physics.add.sprite(20, 500, "player1").setScale(1.5);
         this.player.setCollideWorldBounds(true);
         // set trọng lượng theo trục Y
         this.player.setGravityY(300);
