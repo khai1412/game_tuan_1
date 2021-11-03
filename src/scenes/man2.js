@@ -5,7 +5,7 @@ class man2 extends Phaser.Scene {
 
 
   preload() {
-    this.load.image("treasure", "assets/treasure.png");
+    this.load.image("treasure", "assets/treasure_final.png");
     this.load.audio("man2_background", "assets/man2_background.mp3");
     this.load.audio('win','assets/win.mp3');
     //this.load.image("game_frame_vu", "assets/game_frame.png");
@@ -21,16 +21,16 @@ class man2 extends Phaser.Scene {
     this.load.audio("true_sound", "assets/true_sound.mp3");
     this.load.audio("false_sound", "assets/false_sound.mp3");
     this.load.audio("open_sound", "assets/open_trea.mp3");
+    this.load.image("platform", "assets/platform_final.png");
     
   }
   create() {
-    
     this.true_sound = this.sound.add("true_sound", { loop: false });
     this.false_sound = this.sound.add("false_sound", { loop: false });
     this.open_sound = this.sound.add("open_sound", { loop: false });
     this.win_music=this.sound.add('win',{loop:false});
     this.man2_background = this.sound.add("man2_background", {loop: true});
-    this.man2_background.play();
+    // this.man2_background.play();
     this.correct_ans=0;
     this.number_ques=0;
     this.count=4;
@@ -52,6 +52,13 @@ class man2 extends Phaser.Scene {
     this.back_text = this.add
       .text(40, 50, "BACK", { fontSize: 54, color: "#FFFFFF" })
       .setVisible(false);
+       // Set platform ST
+    this.platforms = this.physics.add.staticGroup();
+    this.platforms.create(80, 500, "platform");
+    this.platforms.create(600, 400, "platform");
+    this.platforms.create(50, 250, "platform");
+    this.platforms.create(750, 220, "platform");
+    // Set platform EN
     this.treasure = this.physics.add.group();
     this.back_text.setInteractive();
     this.back_text.on("pointerdown", () => {
@@ -68,14 +75,21 @@ class man2 extends Phaser.Scene {
       
       this.number_ques++;
     });
+    // Create treasure ST
     this.traes = [];
-    this.traes_x = 150;
+    var treasure_x = 10;
+    var treasure_y = 0;
     for (var i = 0; i < 4; i++) {
-      this.traes[i] = this.treasure
-        .create(this.traes_x, 610, "treasure")
-        .setScale(0.15);
-      this.traes_x += 180;
+      this.traes[i] = this.treasure.create(treasure_x, treasure_y, "treasure").setScale(0.15);
+      treasure_x += 220;
+      this.traes[i].setCollideWorldBounds(true);
+      this.traes[i].setGravityY(300);
+      this.traes[i].setBounce(Phaser.Math.FloatBetween(0.4, 0.6));
     }
+    // Create treasure EN
+    // Set collision between platform and treasure ST
+    this.physics.add.collider(this.treasure, this.platforms);
+    // Set collision between platform and treasure EN
     this.all_question = [
       "Coding Project có 4 nhà tài\n\ntrợ đúng không?",
       "Coding Project có 7 team tham\ngia đúng khum?",
