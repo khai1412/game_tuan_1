@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>My Game</title>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client/lib/phaser.min.js"></script>
+    <script src="client/src/components/UserComponent.js"></script>
+    <script src="client/src/components/PushOnClick.js"></script>
+    <script src="client/src/components/PreloadText.js"></script>
+    <script src="client/src/scenes/Preload.js"></script>
+    <script src="client/src/scenes/Level.js"></script>
+    <script src="client/src/main.js"></script>
+    <script src="client/src/scenes/man1.js"></script>
+    <script src="client/src/scenes/man2.js"></script>
+    <style>
+        body {
+            background: #2f2f2f;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="chat-text" style="width: 500px; height: 100px; overflow-y: scroll;color: #fff;">
+        <div>Hello</div>
+    </div>
+    <form id="chat-form">
+        <input type="text" id="chat-input" style="width: 500px;"></input>
+    </form>
+
+    <script>
+        var chatText = document.getElementById("chat-text");
+        var chatInput = document.getElementById("chat-input");
+        var chatForm = document.getElementById("chat-form");
+
+        var socket = io();
+
+        // 
+        socket.on('addToChat', function(data) {
+            chatText.innerHTML += '<div>' + data + '</div>';
+        });
+
+        chatForm.onsubmit = function(e) {
+            e.preventDefault();
+            socket.emit('sendMsgToServer', chatInput.value);
+            chatInput.value = '';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,33 +1,24 @@
 {
-  "name": "starter-template-basic-javascript",
+  "name": "game_tuan_1",
   "version": "1.0.0",
-  "description": "Basic JavaScript project template for Phaser Editor 2D.",
-  "main": "main.js",
-  "directories": {
-    "lib": "lib"
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.3.2"
   },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "editor": "phasereditor2d-launcher -project . -port 1959",
-    "editor-remote": "phasereditor2d-launcher -project . -disable-open-browser -public -port 1959"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PhaserEditor2D/starter-template-basic-javascript.git"
+    "url": "git+https://github.com/khai1412/game_tuan_1.git"
   },
-  "keywords": [
-    "phaser",
-    "phasereditor2d",
-    "html5",
-    "video-game"
-  ],
-  "author": "Arian Fornaris <developers@phasereditor2d.com> (https://phasereditor2d.com/)",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PhaserEditor2D/starter-template-basic-javascript/issues"
+    "url": "https://github.com/khai1412/game_tuan_1/issues"
   },
-  "homepage": "https://github.com/PhaserEditor2D/starter-template-basic-javascript#readme",
-  "dependencies": {
-    "phasereditor2d-launcher": "^3.30.0-beta.1"
-  }
+  "homepage": "https://github.com/khai1412/game_tuan_1#readme"
 }
